@@ -4,12 +4,18 @@ const refs ={
 
 function onTitleClick(event){
     const title = event.currentTarget;
-    const isActive = title.classList.contains('active')
-    if(isActive){
-        title.classList.remove('active')
-    } else{
-        title.classList.add('active')
+    const spoilerBlock = refs.spoilerBody
+    const isOne = spoilerBlock.classList.contains('one')
+    if(isOne){
+        spoilerBlock.querySelectorAll('.block__item').forEach((item) =>{
+            const itemTitle = item.querySelector('.block__title')
+            if(itemTitle !== title){
+                itemTitle.classList.remove('active')
+            }
+        })
     }
+    
+    title.classList.toggle('active')
 }
 
 refs.spoilerBody.querySelectorAll('.block__item').forEach((item) =>{
